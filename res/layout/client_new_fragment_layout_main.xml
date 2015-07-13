@@ -1,0 +1,78 @@
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    		   xmlns:my="http://schemas.android.com/apk/res/com.heverage.zhanyebao"        
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="top"
+            android:background="#26A69A"
+            android:gravity="center|center_vertical"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/buttonBack"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="left|center_vertical"
+                android:background="@+drawable/back" >
+            </Button>
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:gravity="center|center_vertical"
+                android:text="查看客户信息"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:layout_margin="1dp"
+                android:text="取消"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:layout_margin="1dp"
+                android:text="保存"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <ScrollView 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fadingEdge="vertical"
+    android:scrollbars="vertical" >
+            
+                <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+            
+        <com.heverage.zhanyebao.view.ToggleDownView
+            android:id="@+id/client_new_basic_region"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            my:includeLayout="@layout/client_new_basic"
+            my:text="基本情况"
+            my:toggled="true" />
+
+
+    </LinearLayout>
+</ScrollView>
+    </LinearLayout>

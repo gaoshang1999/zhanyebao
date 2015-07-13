@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="icon_default">#dddddd</color>
+    <color name="icon_clicked">#45c01a</color>
+    <color name="white">#ffffff</color>
+</resources>

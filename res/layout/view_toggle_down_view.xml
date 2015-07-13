@@ -1,0 +1,43 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/client_basic_line"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#bbbbbb"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/client_basic_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/triangle_down" />
+
+            <TextView
+                android:id="@+id/textViewBasic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:layout_marginLeft="3dp"
+                android:gravity="center|center_vertical"
+                android:text="基本信息"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        
+        <ViewStub
+            android:id="@+id/viewstub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout="@layout/client_new_basic" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="#ffffff" />
+        
+</LinearLayout>

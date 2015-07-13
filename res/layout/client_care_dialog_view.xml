@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+     >
+
+    <LinearLayout  
+    android:layout_width="fill_parent"  
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:layout_gravity="center"    
+    android:gravity="center" 
+   >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="关注信息"
+            android:textColor="#26A69A"
+            android:textSize="18sp" />
+    
+   <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:gravity="center" 
+        android:layout_gravity="right"    
+        android:background="@+drawable/client_care_btn_edit"
+        android:text="编辑" />
+    
+ </LinearLayout>   
+
+    <View 
+     android:layout_width="fill_parent"
+     android:layout_height="1px"
+     android:background="#BBBBBB"
+    />
+
+   <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+ 		android:layout_gravity="center"   
+ 		android:layout_margin="10dp"
+        android:textColor="#000000"
+        android:textSize="15sp" 		
+        android:text="有明确意向，重点跟踪（下周二,7月15号）" />
+
+   
+<LinearLayout  
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="10dp"
+    android:layout_gravity="center"
+     >
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="#26A69A"
+        android:text="关闭" />
+</LinearLayout>
+</LinearLayout>

@@ -1,0 +1,122 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (classFileParser.cpp:3470), pid=10076, tid=7576
+#  Error: ShouldNotReachHere()
+#
+# JRE version: 7.0-b147
+# Java VM: Java HotSpot(TM) Client VM (21.0-b17 mixed mode windows-x86 )
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x023b8400):  JavaThread "Unknown thread" [_thread_in_vm, id=7576, stack(0x004f0000,0x00540000)]
+
+Stack: [0x004f0000,0x00540000],  sp=0x0053f2f0,  free space=316k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x1630e1]
+V  [jvm.dll+0x15dcfb]
+V  [jvm.dll+0x18e37]
+V  [jvm.dll+0x1a6a8]
+V  [jvm.dll+0x2a42f]
+V  [jvm.dll+0x2b818]
+V  [jvm.dll+0x2bedb]
+V  [jvm.dll+0x2bf2a]
+V  [jvm.dll+0x2c07d]
+V  [jvm.dll+0x2c15a]
+V  [jvm.dll+0x2c3d7]
+V  [jvm.dll+0x73cb1]
+V  [jvm.dll+0x7406b]
+V  [jvm.dll+0x121a7c]
+V  [jvm.dll+0x14382a]
+V  [jvm.dll+0xa2940]
+C  [javaw.exe+0x1359]
+C  [javaw.exe+0x1dc9]
+C  [javaw.exe+0xa0cb]
+C  [javaw.exe+0xa155]
+C  [kernel32.dll+0x1337a]  BaseThreadInitThunk+0x12
+C  [ntdll.dll+0x392b2]  RtlInitializeExceptionChain+0x63
+C  [ntdll.dll+0x39285]  RtlInitializeExceptionChain+0x36
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x023b8400 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=7576, stack(0x004f0000,0x00540000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Dynamic libraries:
+0x00350000 - 0x0037f000 	C:\Program Files (x86)\Java\jdk1.7.0\bin\javaw.exe
+0x77630000 - 0x777b0000 	C:\Windows\SysWOW64\ntdll.dll
+0x76350000 - 0x76460000 	C:\Windows\syswow64\kernel32.dll
+0x76cd0000 - 0x76d17000 	C:\Windows\syswow64\KERNELBASE.dll
+0x76210000 - 0x762b0000 	C:\Windows\syswow64\ADVAPI32.dll
+0x75b10000 - 0x75bbc000 	C:\Windows\syswow64\msvcrt.dll
+0x76160000 - 0x76179000 	C:\Windows\SysWOW64\sechost.dll
+0x74db0000 - 0x74ea0000 	C:\Windows\syswow64\RPCRT4.dll
+0x74cf0000 - 0x74d50000 	C:\Windows\syswow64\SspiCli.dll
+0x74ce0000 - 0x74cec000 	C:\Windows\syswow64\CRYPTBASE.dll
+0x769d0000 - 0x76ad0000 	C:\Windows\syswow64\USER32.dll
+0x75bf0000 - 0x75c80000 	C:\Windows\syswow64\GDI32.dll
+0x762b0000 - 0x762ba000 	C:\Windows\syswow64\LPK.dll
+0x76c30000 - 0x76ccd000 	C:\Windows\syswow64\USP10.dll
+0x72d80000 - 0x72f1e000 	C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.18837_none_41e855142bd5705d\COMCTL32.dll
+0x76970000 - 0x769c7000 	C:\Windows\syswow64\SHLWAPI.dll
+0x75f50000 - 0x75fb0000 	C:\Windows\system32\IMM32.DLL
+0x76720000 - 0x767ec000 	C:\Windows\syswow64\MSCTF.dll
+0x72f40000 - 0x72f78000 	C:\Windows\SysWOW64\nvinit.dll
+0x0f000000 - 0x0f006000 	C:\Program Files (x86)\NVIDIA Corporation\CoProcManager\_etoured.dll
+0x6fe60000 - 0x6fe9d000 	C:\Program Files (x86)\NVIDIA Corporation\CoProcManager\nvd3d9wrap.dll
+0x75fb0000 - 0x7614d000 	C:\Windows\syswow64\SETUPAPI.dll
+0x75bc0000 - 0x75be7000 	C:\Windows\syswow64\CFGMGR32.dll
+0x762c0000 - 0x7634f000 	C:\Windows\syswow64\OLEAUT32.dll
+0x76ad0000 - 0x76c2c000 	C:\Windows\syswow64\ole32.dll
+0x74ea0000 - 0x74eb2000 	C:\Windows\syswow64\DEVOBJ.dll
+0x6fe30000 - 0x6fe5f000 	C:\Program Files (x86)\NVIDIA Corporation\CoProcManager\nvdxgiwrap.dll
+0x60380000 - 0x6043e000 	C:\Program Files (x86)\Java\jdk1.7.0\jre\bin\msvcr100.dll
+0x60050000 - 0x60371000 	C:\Program Files (x86)\Java\jdk1.7.0\jre\bin\client\jvm.dll
+0x74b00000 - 0x74b07000 	C:\Windows\system32\WSOCK32.dll
+0x75ee0000 - 0x75f15000 	C:\Windows\syswow64\WS2_32.dll
+0x77600000 - 0x77606000 	C:\Windows\syswow64\NSI.dll
+0x72cc0000 - 0x72cf2000 	C:\Windows\system32\WINMM.dll
+0x76150000 - 0x76155000 	C:\Windows\syswow64\PSAPI.DLL
+0x6fb10000 - 0x6fb1c000 	C:\Program Files (x86)\Java\jdk1.7.0\jre\bin\verify.dll
+0x6a770000 - 0x6a790000 	C:\Program Files (x86)\Java\jdk1.7.0\jre\bin\java.dll
+0x681d0000 - 0x681e3000 	C:\Program Files (x86)\Java\jdk1.7.0\jre\bin\zip.dll
+
+VM Arguments:
+jvm_args: -Dfile.encoding=UTF-8 -Xbootclasspath:H:\dev\adt-bundle-windows-x86_64-20131030\adt-bundle-windows-x86_64-20131030\sdk\platforms\android-19\android.jar 
+java_command: com.heverage.zhanyebao.client.Sort
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=C:/Program Files/Java/jdk1.6.0_38/bin/../jre/bin/server;C:/Program Files/Java/jdk1.6.0_38/bin/../jre/bin;C:/Program Files/Java/jdk1.6.0_38/bin/../jre/lib/amd64;C:\Program Files\Java\jdk1.6.0_38\bin;C:\ProgramData\Oracle\Java\javapath;C:\Ruby200-x64\bin;C:\Program Files\Java\jdk1.7.0_67\bin;C:\Program Files (x86)\Common Files\NetSarang;H:\dev\apache-maven-3.1.0-bin\apache-maven-3.1.0\bin;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\ThinkPad\Bluetooth Software\;C:\Program Files\ThinkPad\Bluetooth Software\syswow64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x64;C:\Program Files\Common Files\Lenovo;C:\Program Files (x86)\Common Files\Ulead Systems\MPEG;C:\Program Files (x86)\Windows Live\Shared;C:\SWTOOLS\ReadyApps;C:\Program Files (x86)\Symantec\VIP Access Client\;C:\Program Files (x86)\Common Files\Lenovo;C:\Program Files (x86)\Common Files\Thunder Network\KanKan\Codecs;C:\Program Files (x86)\cvsnt;C:\Program Files\MATLAB\R2008a\bin;C:\Program Files\MATLAB\R2008a\bin\win64;C:\Program Files\nodejs\;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\Users\sjin\AppData\Roaming\npm;H:\dev\adt-bundle-windows-x86_64-20131030\adt-bundle-windows-x86_64-20131030\eclipse;
+USERNAME=sjin
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 7 , 64 bit Build 7601 Service Pack 1
+
+CPU:total 8 (4 cores per cpu, 2 threads per core) family 6 model 58 stepping 9, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, ht
+
+Memory: 4k page, physical 3750700k(972084k free), swap 7499548k(3780088k free)
+
+vm_info: Java HotSpot(TM) Client VM (21.0-b17) for windows-x86 JRE (1.7.0-b147), built on Jun 27 2011 02:25:52 by "java_re" with unknown MS VC++:1600
+
+time: Thu Jul 02 09:37:04 2015
+elapsed time: 0 seconds
+

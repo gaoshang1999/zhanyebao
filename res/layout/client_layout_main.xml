@@ -1,0 +1,62 @@
+   
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
+    android:layout_width="fill_parent"  
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+     >  
+    
+  <LinearLayout   
+    android:layout_width="fill_parent"  
+    android:layout_height="50dp"
+	android:orientation="horizontal" 
+	android:layout_gravity="top"
+	android:gravity="center|center_vertical" 
+	android:background="#26A69A" >  
+   
+    
+    <TextView
+            android:id="@+id/textView1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:gravity="center|center_vertical"
+            android:text="客户"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+      
+  </LinearLayout>  
+   
+ 
+   
+<FrameLayout 
+    android:layout_width="fill_parent"  
+    android:layout_height="fill_parent" >  
+  
+  
+    <ListView  
+        android:id="@+id/listView1"  
+        android:layout_width="fill_parent"  
+        android:layout_height="fill_parent" 
+        android:layout_gravity="left"  
+        >  
+    </ListView>  
+  
+    <ListView  
+        android:id="@+id/listView2"  
+        android:layout_width="wrap_content"  
+        android:layout_height="wrap_content"  
+        android:layout_gravity="top|right"
+        android:layout_marginLeft="330dip"		
+		android:layout_marginRight="6dip"		
+		android:layout_marginTop="120dip" 
+		android:divider="@null"		
+		android:drawSelectorOnTop="false"		
+		android:fadingEdge="none"		
+		android:scrollbars="none"
+       />  
+  
+</FrameLayout>  
+
+ </LinearLayout>   

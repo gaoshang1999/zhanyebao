@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">展业宝</string>
+    <string name="search_text">搜索</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_sure">确定</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_add_contact">选择联系人</string>
+    <string name="title_activity_care">特别关注</string>
+
+</resources>
