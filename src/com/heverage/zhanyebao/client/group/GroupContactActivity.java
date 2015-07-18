@@ -83,14 +83,9 @@ public class GroupContactActivity extends ActionBarActivity {
 	        mGroup = new Group();  	       
 	        mClient = new Client();
 	        
-	        Random r = new Random(); 
 	        
-	        if(r.nextBoolean()){
-	        	mDataList = mGroup.getClentsList();
-	        
-	        } else {
-	        	mDataList = mClient.buildGroupedClients().subList(0, 11);
-	        }
+	        mDataList = mClient.buildGroupedClients().subList(0, 11);
+	       
 	
 		    mAdapter = new GroupContactAdapter(GroupContactActivity.this, android.R.layout.simple_list_item_1,  
 		                mDataList);  

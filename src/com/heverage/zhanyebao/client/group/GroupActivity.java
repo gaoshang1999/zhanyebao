@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -52,8 +53,8 @@ public class GroupActivity extends ActionBarActivity {
 	public class PlaceholderFragment extends Fragment implements OnTouchListener {
 	    private Context mContext = null; 
 	    
-	    private GroupAdapter mAdapter = null;  
-	    
+//	    private GroupAdapter mAdapter = null;  
+	    GroupAdapterSwiped mAdapter = null;  
 	    private ListView mListView = null;  	
 	    private View mFooter;
  
@@ -64,6 +65,7 @@ public class GroupActivity extends ActionBarActivity {
 	    private Button backBtn;
 	    private Button addNewBtn;
 
+	    private ImageView no_data_image;
 
 	    public PlaceholderFragment(GroupActivity activity) {
 
@@ -82,10 +84,16 @@ public class GroupActivity extends ActionBarActivity {
 	        mDataList = mGroup.buildGroupsList();
 	       
 	
-		    mAdapter = new GroupAdapter(GroupActivity.this, android.R.layout.simple_list_item_1,  
-		                mDataList);  
-	
+//		    mAdapter = new GroupAdapter(GroupActivity.this, android.R.layout.simple_list_item_1,  
+//		                mDataList);  
+		    mAdapter = new GroupAdapterSwiped(GroupActivity.this, this);
 	        
+		    
+		    no_data_image = (ImageView) rootView.findViewById(R.id.no_data_image);  
+		    if(mAdapter.getCount() > 0){
+		    	hideNo_data_image();
+		    }
+		    
 	        mListView.setAdapter(mAdapter);	        
 //	        mListView.setOnTouchListener(this);
 	        mListView.setOnItemClickListener(new OnItemClickListener(){
@@ -127,6 +135,7 @@ public class GroupActivity extends ActionBarActivity {
 					
 					//滚动到末尾
 					mListView.setSelection(mListView.getAdapter().getCount());
+					hideNo_data_image();
 				}        	
 	        });
 	        
@@ -181,18 +190,18 @@ public class GroupActivity extends ActionBarActivity {
 	        // TODO Auto-generated method stub  
 	    	mListView.removeFooterView(mFooter);
 	    	addNewBtn.setEnabled(true);
+	    	
 	        return true;  
 	    } 
 		
-		public String getSureButtonText(int num){
-			String text = "确定("+num+")";
-			return text;
-		}
-		
-		public void changeSureButtonText(int num){
-			addNewBtn.setText(getSureButtonText(num));
-		}		
-		
+	
+	    public void hideNo_data_image(){
+	    	no_data_image.setVisibility(View.GONE);
+	    }
+	    
+	    public void showNo_data_image(){
+	    	no_data_image.setVisibility(View.VISIBLE);
+	    }
 	}
 
 }

@@ -1,22 +1,26 @@
 package com.heverage.zhanyebao.client.model;
 
+import com.heverage.zhanyebao.util.JSONHelper;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Phone implements Parcelable{
-	private int phoneType;
-	private String phoneNum;
-	public int getPhoneType() {
-		return phoneType;
+	private int phone_type_value;
+	
+	private String phone_number;
+	
+	public int getPhone_type_value() {
+		return phone_type_value;
 	}
-	public void setPhoneType(int phoneType) {
-		this.phoneType = phoneType;
+	public void setPhone_type_value(int phone_type_value) {
+		this.phone_type_value = phone_type_value;
 	}
-	public String getPhoneNum() {
-		return phoneNum;
+	public String getPhone_number() {
+		return phone_number;
 	}
-	public void setPhoneNum(String phoneNum) {
-		this.phoneNum = phoneNum;
+	public void setPhone_number(String phone_number) {
+		this.phone_number = phone_number;
 	}
 	@Override
 	public int describeContents() {
@@ -26,19 +30,23 @@ public class Phone implements Parcelable{
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		// TODO Auto-generated method stub
-		dest.writeInt(phoneType);
-		dest.writeString(phoneNum);
+		dest.writeInt(phone_type_value);
+		dest.writeString(phone_number);
 	}		
 	
 	public static final Parcelable.Creator<Phone> CREATOR = new Creator<Phone>() { 
         public Phone createFromParcel(Parcel source) { 
         	Phone ue = new Phone(); 
-            ue.phoneType = source.readInt();
-            ue.phoneNum = source.readString(); 
+            ue.phone_type_value = source.readInt();
+            ue.phone_number = source.readString(); 
             return ue; 
         } 
         public Phone[] newArray(int size) { 
         	return new Phone[size]; 
         } 
     }; 
+    
+	public String toString() {
+		return JSONHelper.toJSON(this);
+	}
 }

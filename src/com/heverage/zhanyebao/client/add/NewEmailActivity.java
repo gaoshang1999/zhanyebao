@@ -18,12 +18,11 @@ import android.widget.TextView;
 
 import com.heverage.zhanyebao.R;
 import com.heverage.zhanyebao.client.model.Email;
-import com.heverage.zhanyebao.client.model.Phone;
 import com.heverage.zhanyebao.util.OptionCallbackListener;
 import com.heverage.zhanyebao.util.OptionsDialog;
 import com.heverage.zhanyebao.view.OptionsView;
 
-public class NewPhoneActivity extends ActionBarActivity {
+public class NewEmailActivity extends ActionBarActivity {
 
 
 	@Override
@@ -53,6 +52,8 @@ public class NewPhoneActivity extends ActionBarActivity {
 		private Button backBtn;
 		private Button saveBtn;
 
+
+		
 		public PlaceholderFragment() {
 		}
 
@@ -60,7 +61,7 @@ public class NewPhoneActivity extends ActionBarActivity {
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(
-					R.layout.client_new_phone_layout_main, container, false);
+					R.layout.client_new_email_layout_main, container, false);
 			mContext = this.getActivity();
 
 
@@ -74,19 +75,20 @@ public class NewPhoneActivity extends ActionBarActivity {
 			
 			saveBtn = (Button) rootView.findViewById(R.id.button2);
 			
-			phone = (EditText)rootView.findViewById(R.id.phone_num);
+			email = (EditText)rootView.findViewById(R.id.email);
 			
-			phone.addTextChangedListener(new WatchToEditViewSwitchButton(saveBtn));
+			email.addTextChangedListener(new WatchToEditViewSwitchButton(email, saveBtn));
+			
 			
 			saveBtn.setEnabled(false);
 			saveBtn.setOnClickListener(new OnClickListener() {
 				@Override
-				public void onClick(View v) {
+				public void onClick(View v) {					
 					if(validate()){
-						mPhone.setPhone_number(phone.getText().toString());
+						mEmail.setEmail(email.getText().toString());
 						
 						Intent i = new Intent();
-						i.putExtra("phone", mPhone);
+						i.putExtra("email", mEmail);
 						setResult(RESULT_OK, i);
 						
 						finish();
@@ -94,56 +96,57 @@ public class NewPhoneActivity extends ActionBarActivity {
 				}
 			});
 
-			initPhoneTypeView(inflater, rootView);
+			initEmaiTypeView(rootView);
 			return rootView;
 		}
-		
-		private Phone mPhone = new Phone();
-		private EditText phone;
-		private OptionsView phone_type_line;
-		
-		public void initPhoneTypeView(LayoutInflater inflater, View rootView){
-			
-		    phone_type_line = (OptionsView)rootView.findViewById(R.id.client_phone_type_line);			
 
-			OptionCallbackListener oc = new OptionCallbackListener(){
-				@Override
-				public int getKey() {
-					// TODO Auto-generated method stub
-					return mPhone.getPhone_type_value();
-				}
 
-				@Override
-				public void callback(int key, String value) {
-					// TODO Auto-generated method stub
-					mPhone.setPhone_type_value(key);
+	
+	private Email mEmail = new Email();
+	private EditText email;
+    private OptionsView email_type_line;
+	
+	public void initEmaiTypeView(View rootView){	
+		email_type_line = (OptionsView)rootView.findViewById(R.id.client_email_type_line);			
 
-				}						
-			};			
-			phone_type_line.setOptionCallbackListener(oc);	
-		}
-		
-		public boolean validate(){
-			if(!phone_type_line.isClicked()){
-				return false;
+		OptionCallbackListener oc = new OptionCallbackListener(){
+			@Override
+			public int getKey() {
+				// TODO Auto-generated method stub
+				return mEmail.getEmail_type_value();
 			}
-			
-			if(!phone.getText().toString().matches("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$")){
-				phone.setError("手机号码格式非法！");
-	    		return false;
-	    	}
-			
-			return true;
+
+			@Override
+			public void callback(int key, String value) {
+				// TODO Auto-generated method stub
+				mEmail.setEmail_type_value(key);
+
+			}						
+		};			
+		email_type_line.setOptionCallbackListener(oc);	
+	}
+	
+	public boolean validate(){
+		if(!email_type_line.isClicked()){
+			return false;
 		}
 		
+		if(!email.getText().toString().matches("[\\w\\.\\-]+@([\\w\\-]+\\.)+[\\w\\-]+")){
+    		email.setError("邮箱格式非法！");
+    		return false;
+    	}
 		
+		return true;
+	}
 	
 	class WatchToEditViewSwitchButton implements TextWatcher  
 	{  
+		EditText email;
 		Button ok;
 
-		public WatchToEditViewSwitchButton(Button ok) {
+		public WatchToEditViewSwitchButton(EditText email, Button ok) {
 			super();
+			this.email = email;
 			this.ok = ok;
 		}
 
@@ -159,18 +162,18 @@ public class NewPhoneActivity extends ActionBarActivity {
 	            int count)  
 	    {  
 	        // TODO Auto-generated method stub      	
+	 
 	    }  
 
 	    @Override  
 	    public void afterTextChanged(Editable s)  
 	    {  
 	        // TODO Auto-generated method stub  
-	    	if(s.toString().matches("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$") && phone_type_line.isClicked()){
+	    	if(s.toString().matches("[\\w\\.\\-]+@([\\w\\-]+\\.)+[\\w\\-]+") && email_type_line.isClicked()){
 	    		this.ok.setEnabled(true);
 	    	}
 	    }  
 	}
 	
 	}
-
 }

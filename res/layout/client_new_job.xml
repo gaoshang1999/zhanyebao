@@ -12,7 +12,7 @@
         android:orientation="vertical" >
 
         <LinearLayout
-            android:id="@+id/client_job_unit_line"
+            android:id="@+id/client_company_line"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal" >
@@ -31,17 +31,18 @@
             </TextView>
 
             <EditText
-                android:id="@+id/client_job_unit"
+                android:id="@+id/client_company"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="10dip"
                 android:background="@+drawable/util_edittext"
-                android:hint="30个字符以内"
+                android:hint="请输入(30个字符以内)"
                 android:maxLength="30"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="#000000"
+                android:textColor="@color/my_gray"
+                android:textColorHint="@color/my_gray"
                 android:textSize="16sp" >
             </EditText>
         </LinearLayout>
@@ -49,10 +50,18 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="1px"
-            android:background="#BBBBBB" />
-
+            android:background="@color/my_gray" />
+        
+ 		<com.heverage.zhanyebao.view.OptionsView
+            android:id="@+id/client_job_company_nature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            my:array="@+array/company_nature"
+            my:textHint="企业性质" />
+ 
+ 
         <LinearLayout
-            android:id="@+id/client_job_industry_line"
+            android:id="@+id/client_job_trade_type_line"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal" >
@@ -70,7 +79,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/client_job_industry"
+                android:id="@+id/client_job_trade_type"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -78,7 +87,7 @@
                 android:maxLength="30"
                 android:maxLines="1"
                 android:text="请选择"
-                android:textColor="#bbbbbb"
+                android:textColor="@color/my_gray"
                 android:textSize="16sp" >
             </TextView>
         </LinearLayout>
@@ -86,17 +95,12 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="1px"
-            android:background="#BBBBBB" />
+            android:background="@color/my_gray" />
 
-        <com.heverage.zhanyebao.view.OptionsView
-            android:id="@+id/client_job_nature_line"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            my:array="@+array/jobNature"
-            my:textHint="企业性质" />
+       
 
         <LinearLayout
-            android:id="@+id/client_job_type_line"
+            android:id="@+id/client_career_type_line"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal" >
@@ -114,7 +118,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/client_job_type"
+                android:id="@+id/client_career_type"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -122,21 +126,28 @@
                 android:maxLength="30"
                 android:maxLines="1"
                 android:text="请选择"
-                android:textColor="#bbbbbb"
+                android:textColor="@color/my_gray"
                 android:textSize="16sp" />
         </LinearLayout>
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="1px"
-            android:background="#BBBBBB" />
+            android:background="@color/my_gray" />
 
         <com.heverage.zhanyebao.view.OptionsView
-            android:id="@+id/client_job_title_line"
+            android:id="@+id/client_job_position_line"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            my:array="@+array/jobTitle"
+            my:array="@+array/job_position"
             my:textHint="职位" />
+        
+        <com.heverage.zhanyebao.view.OptionsView
+            android:id="@+id/client_job_level_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            my:array="@+array/job_level"
+            my:textHint="职级" />
     </LinearLayout>
 
 </ScrollView>

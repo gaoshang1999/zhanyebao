@@ -137,7 +137,7 @@ public class SearchableTextWatcher implements TextWatcher {
 		else if (search.matches("[\u4e00-\u9fa5]+")) {
 
 			for (int j = 0; j < checkArrayList.size(); j++) {
-				if (!checkArrayList.get(j).isRealPerson() || !checkArrayList.get(j).getName().contains(search)) {
+				if (!checkArrayList.get(j).isRealPerson() || !checkArrayList.get(j).getClient_name().contains(search)) {
 					checkArrayList.remove(j);
 					j--;
 				}
@@ -145,7 +145,7 @@ public class SearchableTextWatcher implements TextWatcher {
 		} else {
 			search = String.valueOf(search.charAt(0));
 			for (int j = 0; j < checkArrayList.size(); j++) {
-				if (!checkArrayList.get(j).isRealPerson() || (!checkArrayList.get(j).getName().contains(search)
+				if (!checkArrayList.get(j).isRealPerson() || (!checkArrayList.get(j).getClient_name().contains(search)
 						&& !checkArrayList.get(j).getPinyinName()
 								.contains(search.toUpperCase()))) {
 					checkArrayList.remove(j);

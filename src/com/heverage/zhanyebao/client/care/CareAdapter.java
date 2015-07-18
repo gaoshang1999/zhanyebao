@@ -48,7 +48,7 @@ public class CareAdapter extends ArrayAdapter<Client>
     public View getView(int position, View convertView, ViewGroup parent)  
     {  
         // TODO Auto-generated method stub  
-    	final String name = getItem(position).getName();
+    	final String name = getItem(position).getClient_name();
   
     	if (!getItem(position).isRealPerson())  
         {  

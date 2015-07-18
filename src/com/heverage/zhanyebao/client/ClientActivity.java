@@ -31,6 +31,7 @@ import com.heverage.zhanyebao.R;
 import com.heverage.zhanyebao.client.add.NewClientActivity;
 import com.heverage.zhanyebao.client.care.AddContactActivity;
 import com.heverage.zhanyebao.client.care.CareActivity;
+import com.heverage.zhanyebao.client.db.ClientSQLiteHelper;
 import com.heverage.zhanyebao.client.group.GroupActivity;
 import com.heverage.zhanyebao.client.model.Client;
 
@@ -66,6 +67,8 @@ public class ClientActivity extends Fragment implements OnTouchListener , OnGest
     private Button groupBtn;
     private Button addBtn;
     
+    private ClientSQLiteHelper mSQLiteHelper;
+    
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -76,6 +79,7 @@ public class ClientActivity extends Fragment implements OnTouchListener , OnGest
 //		this.getActivity().getActionBar().hide();
 		
 		mContext = this.getActivity();  
+        this.mSQLiteHelper = new ClientSQLiteHelper(mContext);
 		  
         mLetterListView = (ListView) rootView.findViewById(R.id.listView2);  
   
@@ -108,7 +112,7 @@ public class ClientActivity extends Fragment implements OnTouchListener , OnGest
                                 PixelFormat.TRANSLUCENT));  
   
         mClient = new Client();          
-        mDataList = mClient.buildGroupedClients();
+        mDataList = Client.buildGroupedClients(this.mSQLiteHelper.queryAllClients());   
        
         mLetterListView.setAdapter(new LetterAdapter(mContext, english));  
   
@@ -243,8 +247,24 @@ public class ClientActivity extends Fragment implements OnTouchListener , OnGest
 		return rootView;
 	}
 
+	
+	
  
-    @Override  
+    @Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		mDataList = Client.buildGroupedClients(this.mSQLiteHelper.queryAllClients());  
+		
+		mAdapter.clear();
+		mAdapter.addAll(mDataList);
+		
+	}
+
+
+
+
+	@Override  
     public boolean onTouch(View v, MotionEvent event)  
     {  
         // TODO Auto-generated method stub  

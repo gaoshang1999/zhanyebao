@@ -51,7 +51,7 @@ public class AddContactAdapter extends ArrayAdapter<Client>
     {  
         // TODO Auto-generated method stub
     	final Client client = getItem(position);
-    	final String name = getItem(position).getName();
+    	final String name = getItem(position).getClient_name();
   
     	 if (!getItem(position).isRealPerson())  
         {  

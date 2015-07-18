@@ -1,19 +1,51 @@
 package com.heverage.zhanyebao.client.model;
 
-import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import org.json.JSONException;
+
+import android.util.Log;
+
 import com.heverage.zhanyebao.client.PinYinHelper;
+import com.heverage.zhanyebao.util.JSONHelper;
 
 public class Client implements Comparable<Client>{
+	
+	/**
+	 * 客户id
+	 */
+	private int id;
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	/**
+	 * 归属用户id	owner_user_id
+	 */
+	private int owner_user_id;
+	
+	public int getOwner_user_id() {
+		return owner_user_id;
+	}
+
+	public void setOwner_user_id(int owner_user_id) {
+		this.owner_user_id = owner_user_id;
+	}
 
 	/** 
 	 * 姓名
 	 */
-	private String name;
+	private String client_name;
 	
 	private String pinyinName;
 	
@@ -23,7 +55,7 @@ public class Client implements Comparable<Client>{
 	
 
 
-	private boolean isRealPerson;
+	private boolean isRealPerson = true;
 
 	private PinYinHelper mHelper = null;
 	
@@ -32,12 +64,12 @@ public class Client implements Comparable<Client>{
 		mHelper = new PinYinHelper();  
 	}
 	
-	public String getName() {
-		return name;
+	public String getClient_name() {
+		return client_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setClient_name(String name) {
+		this.client_name = name;
 		setPinyinName(mHelper.getPinYinChar(name).toUpperCase());
 		setAllCharHeader(mHelper.getAllPinYinHeadChar(name).toUpperCase());
 	}
@@ -93,7 +125,7 @@ public class Client implements Comparable<Client>{
 		List<Client> clientsList = new ArrayList<Client>();
 		for(String c : initData){
 			Client client = new Client();
-			client.setName(c);
+			client.setClient_name(c);
 			client.setRealPerson(true);
 			clientsList.add(client);
 		}
@@ -115,15 +147,16 @@ public class Client implements Comparable<Client>{
      * 
      * @return 按拼音字母分组的Client 列表，拼音首字母也是列表的元素，它的isRealPerson 为false.
      */
-    public List<Client> buildGroupedClients(List<Client> clientsList){
+    public static List<Client> buildGroupedClients(List<Client> clientsList){
     	List<Client> groupedClientsList = new ArrayList<Client>(clientsList.size());
     	
+    	Collections.sort(clientsList);		
     	Client previousClient = null;    	
     	for(int i=0; i < clientsList.size(); i++){
     		Client client = clientsList.get(i);
     		if(previousClient== null || !previousClient.getFirstCharHeader().equals(client.getFirstCharHeader() )) {
     			Client letterClient = new Client();
-    			letterClient.setName(client.getFirstCharHeader());
+    			letterClient.setClient_name(client.getFirstCharHeader());
     			letterClient.setRealPerson(false);
     			groupedClientsList.add(letterClient);
     		}
@@ -147,7 +180,7 @@ public class Client implements Comparable<Client>{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((client_name == null) ? 0 : client_name.hashCode());
 		return result;
 	}
 
@@ -160,10 +193,10 @@ public class Client implements Comparable<Client>{
 		if (getClass() != obj.getClass())
 			return false;
 		Client other = (Client) obj;
-		if (name == null) {
-			if (other.name != null)
+		if (client_name == null) {
+			if (other.client_name != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!client_name.equals(other.client_name))
 			return false;
 		return true;
 	}  
@@ -171,68 +204,72 @@ public class Client implements Comparable<Client>{
 	/**
 	 * 性别
 	 */
-	private int gender;
+	private int sex;
 
-	public int getGender() {
-		return gender;
+	public int getSex() {
+		return sex;
 	}
 
-	public void setGender(int gender) {
-		this.gender = gender;
+	public void setSex(int sex) {
+		this.sex = sex;
 	}
-	
+
+
 	/**
 	 * 出生日期
 	 */
-	private Date birthday;
-
-	public Date getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}	
+	private Date birth_date;
 	
-	/**
-	 * 城市分类
-	 */
-	private int cityType;	
+	public Date getBirth_date() {
+		return birth_date;
+	}
+
+	public void setBirth_date(Date birth_date) {
+		this.birth_date = birth_date;
+	}
 	
-	public int getCityType() {
-		return cityType;
+	public String getFormatBirth_date() {
+		if(null == birth_date){
+			return "";
+		}
+		return new SimpleDateFormat("yyyy年MM月dd").format(getBirth_date());
 	}
 
-	public void setCityType(int cityType) {
-		this.cityType = cityType;
-	}
-
-	/**
-	 * 教育程度
-	 */
-	private int educaiton;
-
-	public int getEducaiton() {
-		return educaiton;
-	}
-
-	public void setEducaiton(int educaiton) {
-		this.educaiton = educaiton;
+	public int getAge(){
+		if(null == this.getBirth_date()){
+			return -1;
+		}
+		
+		Calendar now = Calendar.getInstance();
+		
+		Calendar birth = Calendar.getInstance();
+		birth.setTime(this.getBirth_date());
+		
+		return now.get(Calendar.YEAR)- birth.get(Calendar.YEAR);
 	}
 	
 	/**
-	 * 地区
+	 * 身份证号
 	 */
-	private String region;
-
-	public String getRegion() {
-		return region;
+	private String id_number;
+	
+	public String getId_number() {
+		return id_number;
 	}
 
-	public void setRegion(String region) {
-		this.region = region;
+	public void setId_number(String id_number) {
+		this.id_number = id_number;
 	}
 	
+	private List<Email> emailList = new ArrayList<Email>();
+	
+	public List<Email> getEmailList() {
+		return emailList;
+	}
+
+	public void setEmailList(List<Email> emailList) {
+		this.emailList = emailList;
+	}
 
 	private List<Phone> phoneList = new ArrayList<Phone>();
 
@@ -255,315 +292,464 @@ public class Client implements Comparable<Client>{
 	}	
 	
 	/**
-	 * 工作单位
+	 * 地区
 	 */
-	private String jobUnit;
-	
-	public String getJobUnit() {
-		return jobUnit;
+	private String region;
+
+	public String getRegion() {
+		return region;
 	}
 
-	public void setJobUnit(String jobUnit) {
-		this.jobUnit = jobUnit;
+	public void setRegion(String region) {
+		this.region = region;
+	}
+	
+
+	/**
+	 * 地区分类
+	 */
+	private int region_type;	
+	
+	public int getRegion_type() {
+		return region_type;
+	}
+
+	public void setRegion_type(int cityType) {
+		this.region_type = cityType;
+	}
+
+	/**
+	 * 教育程度
+	 */
+	private int education_type;
+
+	public int getEducation_type() {
+		return education_type;
+	}
+
+	public void setEducation_type(int educaiton) {
+		this.education_type = educaiton;
+	}
+	
+
+
+
+	
+	/**
+	 * 工作单位
+	 */
+	private String company;
+	
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
 	}
 
 
 	/**
 	 * 行业类型
 	 */
-	private String industry;
+	private String trade_type;
 
-	public String getIndustry() {
-		return industry;
+	public String getTrade_type() {
+		return trade_type;
 	}
 
-	public void setIndustry(String industry) {
-		this.industry = industry;
+	public void setTrade_type(String trade_type) {
+		this.trade_type = trade_type;
 	}
 	
 	/**
 	 * 企业性质
 	 */
-	private int jobNature;
+	private int company_nature;
 
-	public int getJobNature() {
-		return jobNature;
+	public int getCompany_nature() {
+		return company_nature;
 	}
 
-	public void setJobNature(int jobNature) {
-		this.jobNature = jobNature;
+	public void setCompany_nature(int company_nature) {
+		this.company_nature = company_nature;
 	}
 	
 	
 	/**
 	 * 职业类型
 	 */
-	private String jobType;
+	private String career_type;
 
-	public String getJobType() {
-		return jobType;
+	public String getCareer_type() {
+		return career_type;
 	}
 
-	public void setJobType(String jobType) {
-		this.jobType = jobType;
+	public void setCareer_type(String career_type) {
+		this.career_type = career_type;
 	}
 	
 	/**
 	 * 职位
 	 */
-	private int jobTitle;
+	private int job_position;
 
-	public int getJobTitle() {
-		return jobTitle;
+	public int getJob_position() {
+		return job_position;
 	}
 
-	public void setJobTitle(int jobTitle) {
-		this.jobTitle = jobTitle;
+	public void setJob_position(int job_position) {
+		this.job_position = job_position;
+	}
+	
+	/**
+	 * 职级
+	 */
+	private int job_level;
+
+	public int getJob_level() {
+		return job_level;
+	}
+
+	public void setJob_level(int job_level) {
+		this.job_level = job_level;
 	}
 	
 	/**
 	 * 婚姻状况
 	 */
-	private int marriage;
+	private int marital_status;
 
-	public int getMarriage() {
-		return marriage;
+	public int getMarital_status() {
+		return marital_status;
 	}
 
-	public void setMarriage(int marriage) {
-		this.marriage = marriage;
+	public void setMarital_status(int marital_status) {
+		this.marital_status = marital_status;
 	}
 	
 	/**
 	 * 结婚纪念日
 	 */
-	private Date weddingAnniversary;
+	private Date wedding_date;
 
-	public Date getWeddingAnniversary() {
-		return weddingAnniversary;
+	public Date getWedding_date() {
+		return wedding_date;
 	}
 
-	public void setWeddingAnniversary(Date weddingAnniversary) {
-		this.weddingAnniversary = weddingAnniversary;
+	public void setWedding_date(Date wedding_date) {
+		this.wedding_date = wedding_date;
 	}
 	
+	public String getFormatWedding_date() {
+		if(null == wedding_date){
+			return "";
+		}
+		return new SimpleDateFormat("yyyy年MM月dd").format(getWedding_date());
+	}
 	
+	/**
+	 * 男孩数
+	 */
+	private int boy_num;
+	
+	
+    public int getBoy_num() {
+		return boy_num;
+	}
+
+	public void setBoy_num(int boy_num) {
+		this.boy_num = boy_num;
+	}
+	
+	/**
+	 * 女孩数
+	 */
+	private int girl_num;
+	
+	
+    public int getGirl_num() {
+		return girl_num;
+	}
+
+	public void setGirl_num(int girl_num) {
+		this.girl_num = girl_num;
+	}
+	
+	/**
+	 * 家庭成员
+	 */
+	private String family_info;
+	
+	public String getFamily_info() {
+		return family_info;
+	}
+
+	public void setFamily_info(String family_info) {
+		this.family_info = family_info;
+	}
+
 	/**
 	 * 个人年收
 	 */
-	private BigDecimal income;
+	private double annual_income_personal;
 
-	public BigDecimal getIncome() {
-		return income;
+	public double getAnnual_income_personal() {
+		return annual_income_personal;
 	}
 
-	public void setIncome(BigDecimal income) {
-		this.income = income;
+	public void setAnnual_income_personal(double income) {
+		this.annual_income_personal = income;
 	}
 	
-	public void setIncome(String income) {
-		this.income = new BigDecimal(income);
+	public void setAnnual_income_personal(String income) {
+		this.annual_income_personal = Double.parseDouble(income);
 	}
 	
 	/**
 	 * 个人收入分类
 	 */
-	private int incomeType;
+	private int annual_income_personal_type;
 
-	public int getIncomeType() {
-		return incomeType;
+	public int getAnnual_income_personal_type() {
+		return annual_income_personal_type;
 	}
 
-	public void setIncomeType(int incomeType) {
-		this.incomeType = incomeType;
+	public void setAnnual_income_personal_type(int incomeType) {
+		this.annual_income_personal_type = incomeType;
 	}
 	
 	
 	/**
 	 * 家庭年收
 	 */
-	private BigDecimal familyIncome;
+	private double annual_income_family;
 
-	public BigDecimal getFamilyIncome() {
-		return familyIncome;
+	public double getAnnual_income_family() {
+		return annual_income_family;
 	}
 
-	public void setFamilyIncome(BigDecimal familyIncome) {
-		this.familyIncome = familyIncome;
+	public void setAnnual_income_family(double familyIncome) {
+		this.annual_income_family = familyIncome;
 	}
 	
-	public void setFamilyIncome(String familyIncome) {
-		this.familyIncome = new BigDecimal(familyIncome);
+	public void setAnnual_income_family(String familyIncome) {
+		this.annual_income_family = Double.parseDouble(familyIncome);
 	}
 	
 	/**
 	 * 家庭收入分类
 	 */
-	private int familyIncomeType;
+	private int annual_income_family_type;
 
-	public int getFamilyIncomeType() {
-		return familyIncomeType;
+	public int getAnnual_income_family_type() {
+		return annual_income_family_type;
 	}
 
-	public void setFamilyIncomeType(int familyIncomeType) {
-		this.familyIncomeType = familyIncomeType;
+	public void setAnnual_income_family_type(int familyIncomeType) {
+		this.annual_income_family_type = familyIncomeType;
 	}
 	
 	/**
-	 * 支柱类型
+	 * 家庭收入特点
 	 */
-	private int supportType;
+	private int family_income_feature;
 
-	public int getSupportType() {
-		return supportType;
+	public int getFamily_income_feature() {
+		return family_income_feature;
 	}
 
-	public void setSupportType(int supportType) {
-		this.supportType = supportType;
+	public void setFamily_income_feature(int supportType) {
+		this.family_income_feature = supportType;
 	}
 
 	/**
-	 * 有无缺口
+	 * 财务状况
 	 */
-	private int hasShortage;
+	private int family_financial_standing;
 	
-	public int getHasShortage() {
-		return hasShortage;
+	public int getFamily_financial_standing() {
+		return family_financial_standing;
 	}
 
-	public void setHasShortage(int hasShortage) {
-		this.hasShortage = hasShortage;
+	public void setFamily_financial_standing(int hasShortage) {
+		this.family_financial_standing = hasShortage;
 	}
 	
 	/**
 	 * 客户来源
 	 */	
-	private String source;
+	private int source_type;
 
-	public String getSource() {
-		return source;
+	public int getSource_type() {
+		return source_type;
 	}
 
-	public void setSource(String source) {
-		this.source = source;
+	public void setSource_type(int source_type) {
+		this.source_type = source_type;
 	}
-	
-	/**
-	 * 可接触程度
-	 */
-	private int touchableDegree;
-
-	public int getTouchableDegree() {
-		return touchableDegree;
-	}
-
-	public void setTouchableDegree(int touchableDegree) {
-		this.touchableDegree = touchableDegree;
-	}
-	
 	/**
 	 * 介绍人
 	 */
-	private String introducer;
+	private String introducer_name;
 
-	public String getIntroducer() {
-		return introducer;
+	public String getIntroducer_name() {
+		return introducer_name;
 	}
 
-	public void setIntroducer(String introducer) {
-		this.introducer = introducer;
+	public void setIntroducer_name(String introducer) {
+		this.introducer_name = introducer;
 	}
+	
+
+	
 	
 	/**
 	 * 与介绍人关系
 	 */
-	private int relationWithIntroducer;
+	private int introducer_relationship;
 		
-	public int getRelationWithIntroducer() {
-		return relationWithIntroducer;
+	public int getIntroducer_relationship() {
+		return introducer_relationship;
 	}
 
-	public void setRelationWithIntroducer(int relationWithIntroducer) {
-		this.relationWithIntroducer = relationWithIntroducer;
+	public void setIntroducer_relationship(int relationWithIntroducer) {
+		this.introducer_relationship = relationWithIntroducer;
 	}
 
 
 	/**
 	 * 与介绍人亲密度
 	 */
-	private int nearWithIntroducer;
+	private int introducer_closeness;
 
-	public int getNearWithIntroducer() {
-		return nearWithIntroducer;
+	public int getIntroducer_closeness() {
+		return introducer_closeness;
 	}
 
-	public void setNearWithIntroducer(int nearWithIntroducer) {
-		this.nearWithIntroducer = nearWithIntroducer;
+	public void setIntroducer_closeness(int nearWithIntroducer) {
+		this.introducer_closeness = nearWithIntroducer;
 	}
 	
 	/**
 	 * 介绍人评价
 	 */
-	private String introducerOpinion;
+	private String introducer_evaluation;
 
-	public String getIntroducerOpinion() {
-		return introducerOpinion;
+	public String getIntroducer_evaluation() {
+		return introducer_evaluation;
 	}
 
-	public void setIntroducerOpinion(String introducerOpinion) {
-		this.introducerOpinion = introducerOpinion;
+	public void setIntroducer_evaluation(String introducerOpinion) {
+		this.introducer_evaluation = introducerOpinion;
 	}
+	
+	
+	/**
+	 * 可接触程度
+	 */
+	private int contact_type;
+
+	public int getContact_type() {
+		return contact_type;
+	}
+
+	public void setContact_type(int touchableDegree) {
+		this.contact_type = touchableDegree;
+	}
+	
 	
 	/**
 	 * 联系时注意问题
 	 */
-	private String problemToBeMind;
+	private String contact_attention;
 
-	public String getProblemToBeMind() {
-		return problemToBeMind;
+	public String getContact_attention() {
+		return contact_attention;
 	}
 
-	public void setProblemToBeMind(String problemToBeMind) {
-		this.problemToBeMind = problemToBeMind;
+	public void setContact_attention(String problemToBeMind) {
+		this.contact_attention = problemToBeMind;
 	}
 	
 	/**
-	 * PDP类型
+	 * 血型
 	 */
-	private int PDPType;
-
-	public int getPDPType() {
-		return PDPType;
+	private int blood_group;
+		
+	public int getBlood_group() {
+		return blood_group;
 	}
 
-	public void setPDPType(int pDPType) {
-		PDPType = pDPType;
+	public void setBlood_group(int blood_group) {
+		this.blood_group = blood_group;
+	}
+
+	/**
+	 * PDP类型
+	 */
+	private int pdp_type;
+
+	public int getPdp_type() {
+		return pdp_type;
+	}
+
+	public void setPdp_type(int pDPType) {
+		pdp_type = pDPType;
 	}
 	
 
 	/**
 	 * 	兴趣爱好
 	 */
-	private String hobby;
+	private String hobbies;
 
-	public String getHobby() {
-		return hobby;
+	public String getHobbies() {
+		return hobbies;
 	}
 
-	public void setHobby(String hobby) {
-		this.hobby = hobby;
+	public void setHobbies(String hobby) {
+		this.hobbies = hobby;
 	}
 	
 	/**
 	 * 关注的服务
 	 */
-	private String mindingService;
+	private String interesting_service;
 
-	public String getMindingService() {
-		return mindingService;
+	public String getInteresting_service() {
+		return interesting_service;
 	}
 
-	public void setMindingService(String mindingService) {
-		this.mindingService = mindingService;
+	public void setInteresting_service(String interesting_service) {
+		this.interesting_service = interesting_service;
+	}
+	
+	public String toJSON() {
+//		JSONObject json = new JSONObject();
+//		try {
+//			json.put("owner_user_id", owner_user_id);
+//			json.put("client_name", client_name);			
+//			json.put("sex", sex);
+//			json.put("id_number", id_number);
+//			json.put("birth_date", new SimpleDateFormat("yyyy-MM-dd").format(birth_date));
+//			
+//		} catch (JSONException ex) {
+//			ex.printStackTrace();
+//		}
+		String j = JSONHelper.toJSON(this);
+		Log.v("bean->json", j);
+		return j;
+	}
+
+	
+	public static Client setJSON(String json){
+		try{
+			Log.v("json->bean", JSONHelper.parseObject(json, Client.class).toJSON());
+			return JSONHelper.parseObject(json, Client.class); 
+		} catch (JSONException e) {  
+	        e.printStackTrace();  
+	    } 
+		return null;
 	}
 }

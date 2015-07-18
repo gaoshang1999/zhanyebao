@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="gender">
+    <string-array name="sex">
         <item>性别</item>
         <item>男</item>
         <item>女</item>
     </string-array>
-    <string-array name="phoneType">
+    <string-array name="email_type">
+        <item>邮箱分类</item>
+        <item>私人</item>
+        <item>单位</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="phone_type">
         <item>手机分类</item>
         <item>常用</item>
         <item>工作</item>
         <item>家庭</item>
     </string-array>
-    <string-array name="addressType">
+    <string-array name="address_type">
         <item>地址类型</item>
         <item>公司</item>
         <item>家庭</item>
     </string-array>
-    <string-array name="cityType">
+    <string-array name="region_type">
         <item>城市分类</item>
         <item>一线城市</item>
         <item>二线城市</item>
@@ -27,15 +33,12 @@
         <item>县域</item>
         <item>乡村</item>
     </string-array>
-    <string-array name="educaiton">
+    <string-array name="educaiton_type">
         <item>教育程度</item>
-        <item>博士及以上</item>
-        <item>硕士</item>
+        <item>硕士及以上</item>
         <item>本科</item>
-        <item>专科</item>
-        <item>高中</item>
-        <item>初中</item>
-        <item>小学及以下</item>
+        <item>大专</item>
+        <item>高中及以下</item>
     </string-array>
     <string-array name="province">
         <item>安徽省</item>
@@ -491,7 +494,7 @@
         <item>重庆市-酉阳土家族苗族自治县</item>
         <item>重庆市-彭水苗族土家族自治县</item>
     </string-array>
-    <string-array name="industry">
+    <string-array name="trade_type">
 
         <!-- <item>行业类型</item> -->
         <item>农、林、牧、渔业</item>
@@ -515,7 +518,7 @@
         <item>公共管理、社会保障和社会组织</item>
         <item>国际组织</item>
     </string-array>
-    <string-array name="jobNature">
+    <string-array name="company_nature">
         <item>企业性质</item>
         <item>国有企业</item>
         <item>集体企业</item>
@@ -527,7 +530,7 @@
         <item>有限责任公司</item>
         <item>股份有限公司</item>
     </string-array>
-    <string-array name="jobType">
+    <string-array name="career_type">
 
         <!-- <item>职业类型</item> -->
         <item>国家机关、党群组织、企业、事业单位负责人</item>
@@ -539,42 +542,56 @@
         <item>军人</item>
         <item>不便分类的其他从业人员</item>
     </string-array>
-    <string-array name="jobTitle">
+    <string-array name="job_position">
         <item>职位</item>
         <item>高层管理人员</item>
         <item>中层管理人员</item>
         <item>一般员工</item>
     </string-array>
-    <string-array name="marriage">
+    <string-array name="job_level">
+        <item>职级</item>
+        <item>A级</item>
+        <item>B级</item>
+        <item>C级</item>
+        <item>D级</item>
+        <item>E级</item>
+    </string-array>
+    <string-array name="marital_status">
         <item>婚姻状况</item>
         <item>单身</item>
         <item>已婚</item>
         <item>离异</item>
-        <item>丧偶</item>
     </string-array>
-    <string-array name="incomeType">
+    <string-array name="income_type">
         <item>年收入分类</item>
         <item>低收入</item>
         <item>中等收入</item>
         <item>高收入</item>
     </string-array>
-    <string-array name="supportType">
-        <item>支柱类型</item>
+    <string-array name="family_income_feature">
+        <item>收入特点</item>
         <item>单支柱</item>
         <item>双支柱</item>
     </string-array>
-    <string-array name="hasShortage">
-        <item>有无缺口</item>
+    <string-array name="family_financial_standing">
+        <item>财务状况</item>
         <item>无缺口</item>
         <item>有缺口</item>
     </string-array>
-    <string-array name="touchableDegree">
-        <item>可接触程度</item>
-        <item>高</item>
-        <item>中</item>
-        <item>低</item>
+    <string-array name="source_type">
+        <item>客户来源</item>
+        <item>X市场</item>
+        <item>Y市场</item>
+        <item>Z市场</item>
     </string-array>
-    <string-array name="relationWithIntroducer">
+    <string-array name="contact_type">
+        <item>可接触程度</item>
+        <item>非常困难</item>
+        <item>有点困难</item>
+        <item>比较容易</item>
+        <item>非常容易</item>
+    </string-array>
+    <string-array name="introducer_relationship">
         <item>关系</item>
         <item>同学</item>
         <item>同事</item>
@@ -582,18 +599,28 @@
         <item>老乡</item>
         <item>战友</item>
     </string-array>
-    <string-array name="nearWithIntroducer">
+    <string-array name="introducer_closeness">
         <item>亲密度程度</item>
         <item>非常亲近</item>
         <item>较近</item>
         <item>一般朋友</item>
         <item>熟人</item>
     </string-array>
-    <string-array name="PDPType">
-        <item>PDP类型</item>
-        <item>A</item>
-        <item>B</item>
-        <item>C</item>
-        <item>D</item>
+     <string-array name="blood_group">
+        <item>P血型</item>
+        <item>不确定</item>
+        <item>A型</item>
+        <item>B型</item>
+        <item>AB型</item>
+        <item>O型</item>      
     </string-array>
+    <string-array name="pdp_type">
+        <item>PDP类型</item>
+        <item>老虎</item>
+        <item>孔雀</item>
+        <item>考拉</item>
+        <item>猫头鹰</item>
+        <item>变色龙</item>      
+    </string-array>
+
 </resources>

@@ -15,6 +15,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_margin="2dip"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:gravity="center_vertical"
             android:paddingLeft="5dip"
             android:text=""
@@ -23,14 +26,15 @@
 
         <TextView
             android:id="@+id/client_element"
-            android:layout_width="300dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_margin="5dip"
+            android:hint="请选择"
             android:maxLength="30"
             android:maxLines="1"
-            android:text="请选择"
-            android:textColor="#bbbbbb"
+            android:textColor="@color/my_gray"
+            android:textColorHint="@color/my_gray"
             android:textSize="16sp" >
         </TextView>
     </LinearLayout>
@@ -38,6 +42,6 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1px"
-        android:background="#BBBBBB" />
+        android:background="@color/my_gray" />
 
 </LinearLayout>

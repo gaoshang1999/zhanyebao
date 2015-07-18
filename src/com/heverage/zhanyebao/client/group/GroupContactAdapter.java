@@ -52,7 +52,7 @@ public class GroupContactAdapter extends ArrayAdapter<Client>
     {  
         // TODO Auto-generated method stub
     	final Client client = getItem(position);
-    	final String name = getItem(position).getName();
+    	final String name = getItem(position).getClient_name();
     	
         if (!getItem(position).isRealPerson())  
         {  
@@ -110,10 +110,5 @@ public class GroupContactAdapter extends ArrayAdapter<Client>
         return view;  
     }  
   
-  
-  
-//    public int getCheckedListSize(){
-//    	return mCheckedList.size();
-//    }
 
 }  

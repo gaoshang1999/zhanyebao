@@ -12,7 +12,7 @@
         android:orientation="vertical" >
 
                <LinearLayout
-            android:id="@+id/client_mindingService_line"
+            android:id="@+id/client_interesting_service_line"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:orientation="vertical" >
@@ -31,7 +31,7 @@
             </TextView>
 
             <EditText
-                android:id="@+id/client_mindingService"
+                android:id="@+id/client_interesting_service"
                 android:layout_width="fill_parent"
                 android:layout_height="60dp"
                 android:gravity="top"
@@ -39,7 +39,8 @@
                 android:background="@+drawable/util_edittext"
                 android:hint="请输入（100个字以内）"
                 android:maxLength="100"
-                android:textColor="#000000"
+                android:textColor="@color/my_gray"
+                android:textColorHint="@color/my_gray" 
                 android:textSize="16sp" >
             </EditText>
         </LinearLayout>

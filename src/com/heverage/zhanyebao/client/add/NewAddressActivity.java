@@ -18,8 +18,10 @@ import android.widget.TextView;
 
 import com.heverage.zhanyebao.R;
 import com.heverage.zhanyebao.client.model.Address;
+import com.heverage.zhanyebao.client.model.Email;
 import com.heverage.zhanyebao.util.OptionCallbackListener;
 import com.heverage.zhanyebao.util.OptionsDialog;
+import com.heverage.zhanyebao.view.OptionsView;
 
 public class NewAddressActivity extends ActionBarActivity {
 
@@ -72,7 +74,7 @@ public class NewAddressActivity extends ActionBarActivity {
 			
 			saveBtn = (Button) rootView.findViewById(R.id.button2);
 			
-			final EditText address = (EditText)rootView.findViewById(R.id.address);
+			address = (EditText)rootView.findViewById(R.id.address);
 			
 			address.addTextChangedListener(new WatchToEditViewSwitchButton(saveBtn));
 			
@@ -80,13 +82,11 @@ public class NewAddressActivity extends ActionBarActivity {
 			saveBtn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					Address p = new Address();
-					p.setAddressType(mAddressType);
-					p.setRegion(mRegion);
-					p.setAddress(address.getText().toString());
+					
+					mAddress.setDetail_address(address.getText().toString());
 					
 					Intent i = new Intent();
-					i.putExtra("address", p);
+					i.putExtra("address", mAddress);
 					setResult(RESULT_OK, i);
 					
 					finish();
@@ -98,40 +98,32 @@ public class NewAddressActivity extends ActionBarActivity {
 			return rootView;
 		}
 
-		private int mAddressType = 1;
-		private String mRegion;
 		
-		public void initAddressTypeView(LayoutInflater inflater, View rootView){
+		private Address mAddress = new Address();
+		private EditText address;
+		private OptionsView address_type_line;
+		public void initAddressTypeView(LayoutInflater inflater, View rootView){			
+			address_type_line = (OptionsView)rootView.findViewById(R.id.address_type_line);			
 
-		    LinearLayout line = (LinearLayout)rootView.findViewById(R.id.address_type_line);			
-		    final TextView renderText = (TextView)rootView.findViewById(R.id.address_type);
-			
-			line.setOnClickListener(new OnClickListener(){
+			OptionCallbackListener oc = new OptionCallbackListener(){
 				@Override
-				public void onClick(View v) {					
-					
-					OptionCallbackListener oc = new OptionCallbackListener(){
-						@Override
-						public int getKey() {
-							// TODO Auto-generated method stub
-							return mAddressType;
-						}
+				public int getKey() {
+					// TODO Auto-generated method stub
+					return mAddress.getAddress_type_value();
+				}
 
-						@Override
-						public void callback(int key, String value) {
-							// TODO Auto-generated method stub
-							mAddressType = key;
-							renderText.setText(value);
-						}						
-					};
-					
-					OptionsDialog.createOptionDialog(mContext, R.array.addressType, oc);
-				}        	
-	        });			
+				@Override
+				public void callback(int key, String value) {
+					// TODO Auto-generated method stub
+					mAddress.setAddress_type_value(key);
+
+				}						
+			};			
+			address_type_line.setOptionCallbackListener(oc);	
 		}
 		
-		TextView regionRenderText = null;
 		
+		TextView regionRenderText = null;		
 		public void initRegionView(LayoutInflater inflater, View rootView){
 
 		    LinearLayout line = (LinearLayout)rootView.findViewById(R.id.client_region_line);			
@@ -147,56 +139,64 @@ public class NewAddressActivity extends ActionBarActivity {
 	        });			
 		}
 		
+		public boolean isRegionClicked(){
+			if(regionRenderText.getText().toString().isEmpty()){
+				return false;
+			}
+			return true;
+		}
+		
 		private final int REGION_requestCode = 100;
 			
-		 public void onActivityResult(int requestCode, int resultCode,
-	             Intent data) {
+		public void onActivityResult(int requestCode, int resultCode,   Intent data) {
 			if (requestCode == REGION_requestCode) {
 	             if (resultCode == RESULT_OK) {
 	                 // A contact was picked.  Here we will just display it
 	                 // to the user.
 	            	 String text = data.getStringExtra("city");
 	            	 this.regionRenderText.setText(text);
-	            	 mRegion = text ;
+	            	 mAddress.setRegion(text);
 	             }
-	         } 
-	     }
-		
-	}
+	        } 
+	    }
+
 	
-	class WatchToEditViewSwitchButton implements TextWatcher  
-	{  
-		Button ok;
-
-		public WatchToEditViewSwitchButton(Button ok) {
-			super();
-			this.ok = ok;
+		class WatchToEditViewSwitchButton implements TextWatcher  
+		{  
+			Button ok;
+	
+			public WatchToEditViewSwitchButton(Button ok) {
+				super();
+				this.ok = ok;
+			}
+	
+			@Override  
+		    public void beforeTextChanged(CharSequence s, int start, int count,  
+		            int after)  
+		    {  
+		        // TODO Auto-generated method stub   
+		    }  
+	
+		    @Override  
+		    public void onTextChanged(CharSequence s, int start, int before,  
+		            int count)  
+		    {  
+		        // TODO Auto-generated method stub      	
+		    	  if(s.length() == 0){
+		    		  ok.setEnabled(false);
+		    	  }else{
+		    		  ok.setEnabled(true);
+		    	  }
+		    }  
+	
+		    @Override  
+		    public void afterTextChanged(Editable s)  
+		    {  
+		        // TODO Auto-generated method stub  
+		    	if(!s.toString().isEmpty() && isRegionClicked() && address_type_line.isClicked()){
+		    		this.ok.setEnabled(true);
+		    	}
+		    }  
 		}
-
-		@Override  
-	    public void beforeTextChanged(CharSequence s, int start, int count,  
-	            int after)  
-	    {  
-	        // TODO Auto-generated method stub   
-	    }  
-
-	    @Override  
-	    public void onTextChanged(CharSequence s, int start, int before,  
-	            int count)  
-	    {  
-	        // TODO Auto-generated method stub      	
-	    	  if(s.length() == 0){
-	    		  ok.setEnabled(false);
-	    	  }else{
-	    		  ok.setEnabled(true);
-	    	  }
-	    }  
-
-	    @Override  
-	    public void afterTextChanged(Editable s)  
-	    {  
-	        // TODO Auto-generated method stub  
-	    }  
 	}
-
 }

@@ -1,29 +1,16 @@
 package com.heverage.zhanyebao.client;
 
-import java.util.ArrayList;  
-import java.util.HashMap;  
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.heverage.zhanyebao.R;
-import com.heverage.zhanyebao.R.id;
-import com.heverage.zhanyebao.R.layout;
-  
-import android.content.Context;  
-import android.view.LayoutInflater;  
-import android.view.View;  
-import android.view.ViewGroup;  
-import android.widget.ArrayAdapter;  
-import android.widget.TextView;  
   
 public class LetterAdapter extends ArrayAdapter<String>  
 {  
-  
-   
-  
-    private View view = null;  
-      
-    private TextView tView = null;  
-      
-  
   
     public LetterAdapter(Context context, String[] english)  
     {  
@@ -41,17 +28,26 @@ public class LetterAdapter extends ArrayAdapter<String>
     public View getView(int position, View convertView, ViewGroup parent)  
     {  
         // TODO Auto-generated method stub  
-  
-         
-        view = LayoutInflater.from(getContext()).inflate(  
-                    R.layout.client_list_item_letter, null);  
-         
-  
-        tView = (TextView) view  
-                .findViewById(R.id.group_list_item_text);  
-        tView.setText(getItem(position));  
+    	View view = convertView;
+    	ViewHolder viewHolder = null;
+        if(convertView == null) {
+        	viewHolder = new ViewHolder();
+	        view = LayoutInflater.from(getContext()).inflate(  
+	                    R.layout.client_list_item_letter, null);  
+	        viewHolder.letterHolder = (TextView) view  
+	                .findViewById(R.id.group_list_item_text);  
+	        view.setTag(viewHolder);
+        }else{
+        	viewHolder = (ViewHolder) view.getTag();
+        }
+        
+        viewHolder.letterHolder.setText(getItem(position));  
   
         return view;  
     }      
+    
+    private class ViewHolder {
+    	public  TextView letterHolder;
+    }
   
 }  

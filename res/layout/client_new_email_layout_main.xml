@@ -1,5 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:my="http://schemas.android.com/apk/res/com.heverage.zhanyebao"
+            xmlns:my="http://schemas.android.com/apk/res/com.heverage.zhanyebao"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
@@ -28,7 +28,7 @@
             android:layout_margin="1dp"
             android:layout_weight="1"
             android:gravity="center|center_vertical"
-            android:text="新增地址"
+            android:text="新增邮箱"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
 
@@ -42,51 +42,13 @@
             android:textSize="18sp" />
     </LinearLayout>
 
-        <com.heverage.zhanyebao.view.OptionsView
-        android:id="@+id/address_type_line"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        my:array="@+array/address_type"
-        my:textHint="地址类型" />
     
-    <LinearLayout
-        android:id="@+id/client_region_line"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:id="@+id/textView1"
+   <com.heverage.zhanyebao.view.OptionsView
+            android:id="@+id/client_email_type_line"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="2dip"
-            android:gravity="center_vertical"
-            android:paddingLeft="5dip"
-            android:text="地区        "
-            android:textColor="#000000"
-            android:textSize="16sp" >
-        </TextView>
-
-        <TextView
-            android:id="@+id/client_region"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="5dip"
-            android:background="@null"
-            android:maxLength="50"
-            android:maxLines="3"
-            android:text="请选择(省、市、区)"
-            android:textColor="#bbbbbb"
-            android:textSize="16sp" >
-        </TextView>
-    </LinearLayout>
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1px"
-        android:background="@color/my_gray" />
+            my:textHint="邮箱分类"
+            my:array="@+array/email_type" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -101,22 +63,22 @@
             android:layout_margin="2dip"
             android:gravity="center_vertical"
             android:paddingLeft="5dip"
-            android:text="详细地址"
+            android:text="邮箱        "
             android:textColor="#000000"
             android:textSize="16sp" >
         </TextView>
 
         <EditText
-            android:id="@+id/address"
+            android:id="@+id/email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
         	android:layout_gravity="center_vertical"
             android:layout_margin="5dip"
             android:background="@null"
-            android:hint="请输入详细地址"
-            android:maxLength="50"
-            android:maxLines="2"
-            android:textColor="@color/my_gray"
+            android:hint="请输入(比如:abc@example.com)"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:textColor="#bbbbbb"
             android:textSize="16sp" >
         </EditText>
     </LinearLayout>
@@ -124,6 +86,6 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1px"
-        android:background="@color/my_gray" />
+        android:background="#BBBBBB" />
 
 </LinearLayout>

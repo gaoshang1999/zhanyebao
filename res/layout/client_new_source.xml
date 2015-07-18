@@ -11,59 +11,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <LinearLayout
-            android:id="@+id/client_source_line"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="2dip"
-                android:gravity="center_vertical"
-                android:paddingLeft="5dip"
-                android:text="客户来源"
-                android:textColor="#000000"
-                android:textSize="16sp" >
-            </TextView>
-
-            <EditText
-                android:id="@+id/client_source"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="10dip"
-                android:layout_marginBottom="0dip"
-                android:background="@+drawable/util_edittext"
-                android:hint="请输入（30个字以内）"
-                android:inputType="number"
-                android:maxLength="30"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:textColor="#000000"
-                android:textSize="16sp" >
-            </EditText>
-        </LinearLayout>
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="#BBBBBB" />
-
         <com.heverage.zhanyebao.view.OptionsView
-            android:id="@+id/client_touchableDegree_line"
+            android:id="@+id/client_source_type_line"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            my:array="@+array/touchableDegree"
-            my:textHint="可接触程度" />
-
+            my:array="@+array/source_type"
+            my:textHint="客户来源" />
+        
         <LinearLayout
-            android:id="@+id/client_introducer_line"
+            android:id="@+id/client_introducer_name_line"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal" >
@@ -82,7 +38,7 @@
             </TextView>
 
             <EditText
-                android:id="@+id/client_introducer"
+                android:id="@+id/client_introducer_name"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
@@ -94,32 +50,28 @@
                 android:maxLength="30"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="#000000"
+                android:textColor="@color/my_gray"
+                android:textColorHint="@color/my_gray"                  
                 android:textSize="16sp" >
             </EditText>
         </LinearLayout>
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="#BBBBBB" />
-
+            
         <com.heverage.zhanyebao.view.OptionsView
-            android:id="@+id/client_relationWithIntroducer_line"
+            android:id="@+id/client_introducer_relationship_line"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            my:array="@+array/relationWithIntroducer"
+            my:array="@+array/introducer_relationship"
             my:textHint="与介绍人关系" />
 
         <com.heverage.zhanyebao.view.OptionsView
-            android:id="@+id/client_nearWithIntroducer_line"
+            android:id="@+id/client_introducer_closeness_line"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            my:array="@+array/nearWithIntroducer"
+            my:array="@+array/introducer_closeness"
             my:textHint="与介绍人亲密度" />
 
         <LinearLayout
-            android:id="@+id/client_introducerOpinion_line"
+            android:id="@+id/client_introducer_evaluation_line"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:orientation="vertical" >
@@ -138,7 +90,7 @@
             </TextView>
 
             <EditText
-                android:id="@+id/client_introducerOpinion"
+                android:id="@+id/client_introducer_evaluation"
                 android:layout_width="fill_parent"
                 android:layout_height="60dp"
                 android:gravity="top"
@@ -146,7 +98,8 @@
                 android:background="@+drawable/util_edittext"
                 android:hint="请输入（100个字以内）"
                 android:maxLength="100"
-                android:textColor="#000000"
+                android:textColor="@color/my_gray"
+                android:textColorHint="@color/my_gray"                  
                 android:textSize="16sp" >
             </EditText>
         </LinearLayout>
@@ -154,10 +107,17 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="1px"
-            android:background="#BBBBBB" />
+            android:background="@color/my_gray" />
 
+       <com.heverage.zhanyebao.view.OptionsView
+            android:id="@+id/client_contact_type_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            my:array="@+array/contact_type"
+            my:textHint="可接触程度" />
+                
         <LinearLayout
-            android:id="@+id/client_problemToBeMind_line"
+            android:id="@+id/client_contact_attention_line"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:orientation="vertical" >
@@ -176,7 +136,7 @@
             </TextView>
 
             <EditText
-                android:id="@+id/client_problemToBeMind"
+                android:id="@+id/client_contact_attention"
                 android:layout_width="fill_parent"
                 android:layout_height="60dp"
                 android:layout_margin="10dip"
@@ -184,7 +144,8 @@
                 android:background="@+drawable/util_edittext"
                 android:hint="请输入（100个字以内）"
                 android:maxLength="100"
-                android:textColor="#000000"
+                android:textColor="@color/my_gray"
+                android:textColorHint="@color/my_gray"                  
                 android:textSize="16sp" >
             </EditText>
         </LinearLayout>
@@ -192,7 +153,7 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="1px"
-            android:background="#BBBBBB" />
+            android:background="@color/my_gray" />
     </LinearLayout>
 
 </ScrollView>
